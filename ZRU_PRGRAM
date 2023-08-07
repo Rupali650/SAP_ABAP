@@ -1,0 +1,29 @@
+1- WAP to show the material number, Language and material description using plant name. 
+*&---------------------------------------------------------------------*
+*& Report ZRU_MARD_TASK1
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZRU_TASK1_MARD.
+
+PARAMETERS p_mard TYPE mard-werks.
+
+TYPES : BEGIN OF ty_mard, "structure type
+        matnr TYPE mard-matnr,
+        werks TYPE mard-werks,
+        logrt TYPE mard-lgort,
+        END OF ty_mard.
+
+DATA st_mard TYPE ty_mard.
+
+    WRITE :/ 'Material',
+           40 'Plant Number',
+           60 'Storage location'.
+
+     SELECT matnr werks lgort FROM mard INTO st_mard where werks EQ p_mard.
+
+    WRITE :/ st_mard-matnr,
+           40 st_mard-werks,
+           60 st_mard-logrt.
+       ENDSELECT.
+ 
